@@ -1,0 +1,65 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+
+// roles  simple we used the enum  admin user store owener fiexed role
+enum Role {
+  ADMIN
+  USER
+  STORE_OWNER
+}
+
+
+// model user 
+model User{
+  id        String   @id @default(uuid())
+  name      String
+  email     String  @unique
+  password  String 
+  address   String
+  role      Role @default(USER)
+  store     Store []  //may be one user can have many stored one->many 
+  ratings   Rating[] //may be one user can give many rating one->many 
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  
+}
+
+// moidel store
+model Store{
+  id       String   @id @default(uuid())
+  storename   String
+  storemail    String  @unique
+  storaddress  String
+  ownerId  String   //ower id store owner id
+  owner     User   @relation(fields: [ownerId], references: [id])  //relation with user
+  ratings   Rating[]  //getting all ratings for the store
+  createdAt DateTime @default(now())
+}
+
+
+// model rating
+model Rating{
+  id String @id @default(uuid())
+  rating Int @default(0) // 1-5
+  userId    String
+  storeId   String
+  user      User     @relation(fields: [userId], references: [id])
+  store     Store    @relation(fields: [storeId], references: [id])
+  createdAt DateTime @default(now())
+
+}

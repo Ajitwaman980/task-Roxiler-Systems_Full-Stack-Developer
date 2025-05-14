@@ -1,0 +1,16 @@
+// user 
+  email id : testing1353@gmail.com
+  password 12345678
+
+// admin
+
+    email:ajitwaman43@gmail.com,
+    password:Ajitwaman@123
+
+// store
+{
+
+
+    email:storetesting2@gmail.com,
+    password:store@1232
+}
