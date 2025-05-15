@@ -8,9 +8,12 @@ const User = () => {
   useEffect(() => {
     const fetchStores = async () => {
       try {
-        const res = await axios.get("http://localhost:3000/api/user/allstore", {
-          withCredentials: true,
-        });
+        const res = await axios.get(
+          "https://task-roxiler-systems-full-stack-developer.onrender.com/api/user/allstore",
+          {
+            withCredentials: true,
+          }
+        );
         setStores(res.data.allStore);
       } catch (error) {
         console.error("Error fetching stores:", error);
@@ -28,9 +31,12 @@ const User = () => {
 
   const handleLogout = async () => {
     try {
-      await axios.get("http://localhost:3000/api/user/auth/logout", {
-        withCredentials: true,
-      });
+      await axios.get(
+        "https://task-roxiler-systems-full-stack-developer.onrender.com/api/user/auth/logout",
+        {
+          withCredentials: true,
+        }
+      );
       alert("Logged out successfully");
       navigate("/login");
     } catch (err) {
@@ -43,7 +49,7 @@ const User = () => {
     const ratingValue = parseInt(ratings[storeId]);
     try {
       const res = await axios.post(
-        `http://localhost:3000/api/user/ratingstore/${storeId}`,
+        `https://task-roxiler-systems-full-stack-developer.onrender.com/api/user/ratingstore/${storeId}`,
         { rating: ratingValue },
         { withCredentials: true }
       );
@@ -61,7 +67,7 @@ const User = () => {
     const ratingValue = parseInt(ratings[storeId]);
     try {
       const res = await axios.put(
-        `http://localhost:3000/api/user/update/ratingstore/${storeId}/${ratingId}`,
+        `https://task-roxiler-systems-full-stack-developer.onrender.com/api/user/update/ratingstore/${storeId}/${ratingId}`,
         { rating: ratingValue },
         { withCredentials: true }
       );
@@ -77,6 +83,9 @@ const User = () => {
   return (
     <div className="p-8 bg-gray-50 min-h-screen">
       <div className="bg-gray-800 text-white p-6 mb-6 flex justify-between items-center rounded-md shadow-lg">
+        <div className="flex felx-col">
+          <h1 className="font-bold text-4xl">User dashboard </h1>
+        </div>
         <h1 className="font-bold text-3xl">Store Listings</h1>
         <button
           onClick={handleLogout}

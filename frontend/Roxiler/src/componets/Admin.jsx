@@ -17,9 +17,12 @@ const Admin = () => {
 
   const fetchDashboard = async () => {
     try {
-      const res = await axios.get("http://localhost:3000/api/admin/dashboard", {
-        withCredentials: true,
-      });
+      const res = await axios.get(
+        "https://task-roxiler-systems-full-stack-developer.onrender.com/api/admin/dashboard",
+        {
+          withCredentials: true,
+        }
+      );
       setSummary(res.data);
     } catch (err) {
       console.error("Dashboard fetch error", err);
@@ -29,7 +32,7 @@ const Admin = () => {
   const alluserFecth = async () => {
     try {
       const res = await axios.get(
-        "http://localhost:3000/api/admin/gettingalluser",
+        "https://task-roxiler-systems-full-stack-developer.onrender.com/api/admin/gettingalluser",
         {
           withCredentials: true,
         }
@@ -42,9 +45,12 @@ const Admin = () => {
 
   const fetchStores = async () => {
     try {
-      const res = await axios.get("http://localhost:3000/api/admin/allstore", {
-        withCredentials: true,
-      });
+      const res = await axios.get(
+        "https://task-roxiler-systems-full-stack-developer.onrender.com/api/admin/allstore",
+        {
+          withCredentials: true,
+        }
+      );
       setStores(res.data.allstores);
     } catch (err) {
       console.error("Stores fetch error", err);
@@ -53,9 +59,12 @@ const Admin = () => {
 
   const handleLogout = async () => {
     try {
-      await axios.get("http://localhost:3000/api/user/auth/logout", {
-        withCredentials: true,
-      });
+      await axios.get(
+        "https://task-roxiler-systems-full-stack-developer.onrender.com/api/user/auth/logout",
+        {
+          withCredentials: true,
+        }
+      );
       alert("Logged out successfully");
       navigate("/login");
     } catch (err) {
@@ -66,9 +75,12 @@ const Admin = () => {
 
   const deleteUser = async (id) => {
     try {
-      await axios.delete(`http://localhost:3000/api/admin/deleteuser/${id}`, {
-        withCredentials: true,
-      });
+      await axios.delete(
+        `https://task-roxiler-systems-full-stack-developer.onrender.com/api/admin/deleteuser/${id}`,
+        {
+          withCredentials: true,
+        }
+      );
       alert("User deleted successfully");
       alluserFecth(); // Refresh users list
     } catch (err) {
@@ -79,9 +91,12 @@ const Admin = () => {
 
   const deleteStore = async (id) => {
     try {
-      await axios.delete(`http://localhost:3000/api/admin/deletestore/${id}`, {
-        withCredentials: true,
-      });
+      await axios.delete(
+        `https://task-roxiler-systems-full-stack-developer.onrender.com/api/admin/deletestore/${id}`,
+        {
+          withCredentials: true,
+        }
+      );
       alert("Store deleted successfully");
       fetchStores(); // Refresh stores list
     } catch (err) {

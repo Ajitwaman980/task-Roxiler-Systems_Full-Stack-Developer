@@ -15,7 +15,7 @@ const Addstore = () => {
   const onSubmit = async (data) => {
     try {
       const response = await axios.post(
-        "http://localhost:3000/api/admin/newstore",
+        "https://task-roxiler-systems-full-stack-developer.onrender.com/api/admin/newstore",
         data,
         { withCredentials: true }
       );

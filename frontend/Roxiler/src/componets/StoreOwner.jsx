@@ -7,9 +7,12 @@ const StoreOwner = () => {
   const navigate = useNavigate();
   const myStore = async () => {
     try {
-      const res = await axios.get("http://localhost:3000/api/store/my-store", {
-        withCredentials: true,
-      });
+      const res = await axios.get(
+        "https://task-roxiler-systems-full-stack-developer.onrender.com/api/store/my-store",
+        {
+          withCredentials: true,
+        }
+      );
       setStores(res.data.stores);
     } catch (err) {
       console.error("Error fetching store data:", err);
@@ -22,9 +25,12 @@ const StoreOwner = () => {
 
   const handleLogout = async () => {
     try {
-      await axios.get("http://localhost:3000/api/user/auth/logout", {
-        withCredentials: true,
-      });
+      await axios.get(
+        "https://task-roxiler-systems-full-stack-developer.onrender.com/api/user/auth/logout",
+        {
+          withCredentials: true,
+        }
+      );
       alert("Logged out successfully");
       navigate("/login");
     } catch (err) {

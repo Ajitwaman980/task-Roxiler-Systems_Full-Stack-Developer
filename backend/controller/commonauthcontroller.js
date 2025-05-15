@@ -55,7 +55,11 @@ export const createUser = async (req, res) => {
     }
 
     // set cookie
-    res.cookie("token", token);
+    res.cookie("token", token, {
+      httpOnly: true,
+      secure: true,
+      sameSite: "None",
+    });
 
     // response
     res.status(200).json({ message: "User created successfully", user, token });
@@ -102,7 +106,11 @@ export const loginUser = async (req, res) => {
     }
 
     // set cookie
-    res.cookie("token", token);
+    res.cookie("token", token, {
+      httpOnly: true,
+      secure: true,
+      sameSite: "None",
+    });
 
     // response
     res.status(200).json({

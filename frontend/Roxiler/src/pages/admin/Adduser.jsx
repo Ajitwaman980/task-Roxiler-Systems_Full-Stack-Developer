@@ -18,7 +18,7 @@ const Adduser = () => {
     try {
       console.log("Form data:", data);
       const response = await axios.post(
-        "http://localhost:3000/api/admin/newuser",
+        "https://task-roxiler-systems-full-stack-developer.onrender.com/api/admin/newuser",
         data,
         { withCredentials: true }
       );

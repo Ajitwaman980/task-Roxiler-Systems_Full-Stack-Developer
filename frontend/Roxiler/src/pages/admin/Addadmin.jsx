@@ -15,7 +15,7 @@ const Addadmin = () => {
   const onSubmit = async (data) => {
     try {
       const response = await axios.post(
-        "http://localhost:3000/api/admin/newadmin",
+        "https://task-roxiler-systems-full-stack-developer.onrender.com/api/admin/newadmin",
         data,
         { withCredentials: true }
       );
