@@ -66,11 +66,12 @@ export const allStoreRatingByid = async (req, res) => {
 //  new store
 export const newstore = async (req, res) => {
   try {
-    const { storename, storemail, storaddress, ownerId } = req.body;
-
+    const { storename, storemail, storaddress } = req.body;
+    console.log("Request body:", req.body);
     // validate input
-    const validationstore = await storeSchema.safeParse(req.body);
+    const validationstore = storeSchema.safeParse(req.body);
     if (!validationstore.success) {
+      console.log("Validation errors:", validationstore.error.errors);
       return res.status(400).json({
         message: "Invalid data",
         errors: validationstore.error.errors,
@@ -81,15 +82,17 @@ export const newstore = async (req, res) => {
     const alreadyExists = await prisma.store.findUnique({
       where: { storemail },
     });
-
+    console.log("Already exists:", alreadyExists);
     if (alreadyExists) {
       return res.status(400).json({ message: "Store already exists" });
     }
+    // console.log("Owner ID:", ownerId);
 
     // check if provided ownerId exists and is STORE_OWNER
     const owner = await prisma.user.findUnique({
-      where: { id: ownerId },
+      where: { email: storemail },
     });
+    console.log("Owner found:", owner.id);
 
     if (!owner || owner.role !== "STORE_OWNER") {
       return res.status(400).json({ message: "Invalid or non-store owner ID" });
@@ -101,10 +104,10 @@ export const newstore = async (req, res) => {
         storename,
         storemail,
         storaddress,
-        ownerId,
+        ownerId: owner.id, // Use the owner's ID
       },
     });
-
+    console.log("Store created:", store);
     res.status(201).json({
       message: "Store created successfully",
       store,

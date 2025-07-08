@@ -74,7 +74,7 @@ export const createUser = async (req, res) => {
 export const loginUser = async (req, res) => {
   try {
     const { email, password } = req.body;
-
+    // console.log(email, password);
     // Check if the user exists
     const user = await prisma.user.findUnique({
       where: {
@@ -107,9 +107,9 @@ export const loginUser = async (req, res) => {
 
     // set cookie
     res.cookie("token", token, {
-      httpOnly: true,
-      secure: false,
-      sameSite: "None",
+      // httpOnly: true,
+      // secure: false,
+      // sameSite: "None",
     });
 
     // response

@@ -39,7 +39,7 @@ model User{
   
 }
 
-// moidel store
+// model store
 model Store{
   id       String   @id @default(uuid())
   storename   String
@@ -56,8 +56,8 @@ model Store{
 model Rating{
   id String @id @default(uuid())
   rating Int @default(0) // 1-5
-  userId    String
-  storeId   String
+  userId    String 
+  storeId   String 
   user      User     @relation(fields: [userId], references: [id])
   store     Store    @relation(fields: [storeId], references: [id])
   createdAt DateTime @default(now())
